@@ -1,0 +1,21 @@
+1) Describe quickly here how do you control the robots to perform the advanced track.
+
+Oscillate between follow_line and follow_walls until there is an obstacle at the front.
+
+follow_line ends if there is no more line and there are walls around.
+
+follow_walls ends if changeTime seconds have passed and (if a wall is missing or if a line is detected)
+
+A line research starts between a follow_walls and a follow_line to ensure the presence of a white line.
+
+The robot doesn't move at full speed (150) and turn (for adjustment with the white line) at 25.
+The constants for linear regulation and derivation regulation are lower than in the speed challenge.
+
+
+2) If you filter the measurements, tell a few words on how you do it.
+
+Key filter : centered mean
+-> if m = [e1, e2, e3, e4, e5] are the 5 last measures
+-> take the mean of [f2, f3, f4] where [f1, f2, f3, f4, f5] = sort(m)
+
+For filtering, 0 (no obstacle detected) is replaced by 1 (1 meter of distance).

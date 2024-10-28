@@ -1,0 +1,30 @@
+Describe quickly here what you have done to go faster.
+
+For filtering :
+0 is replaced by 0.5 meters (that way, absence of data mean far away not close)
+Use centered mean filtering
+-> if m = [e1, e2, e3, e4, e5] are the 5 last measures
+-> take the mean of [f2, f3, f4] where [f1, f2, f3, f4, f5] = sort(m)
+
+const0 = 350
+const1 = 700
+
+Stop at 0.35 from obstacle
+All spd at 255, never stop
+
+A check for free direction (dist_sonar == 0) is made separately from the filtering to help end conditions
+
+A line research starts if no line is found after a follow_walls
+-> based on the history of adjustments, a direction is chosen
+
+follow_line with memory (if no line is detected, continue the last turning command)
+-> turn by subtracting 25 or 50 on a wheel
+
+follow_walls ends if there is a wall missing or if the white line is detected
+
+Five stages :
+- follow walled line
+- follow line for a left turn
+- follow walls (follow by a line research if necessary)
+- follow line for a right turn
+- follow walls to obstacle
